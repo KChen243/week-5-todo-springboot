@@ -1,18 +1,16 @@
 package com.example.kchen.todo.springboot.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Entity
-@Table(name = "task")
-@Data
+@Table(name = "Tasks")
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Task {
@@ -21,25 +19,25 @@ public class Task {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "title")
+	@Column(name = "Title")
 	private String title;
 
-	@Column(name = "description")
+	@Column(name = "Description")
 	private String description;
 
-	@Column(name = "deleted")
+	@Column(name = "IsDeleted")
 	private boolean isDeleted;
 
-	@Column(name = "dueDate")
+	@Column(name = "DueDate")
 	private Timestamp dueDate;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created", updatable = false)
+	@Column(name = "Created", updatable = false)
 	private Timestamp created;
 
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "updated")
+	@Column(name = "Updated")
 	private Timestamp updated;
 }
