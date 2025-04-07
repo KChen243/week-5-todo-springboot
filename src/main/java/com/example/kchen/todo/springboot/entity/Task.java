@@ -11,7 +11,6 @@ import java.sql.Timestamp;
 @Table(name = "Tasks")
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Task {
 	@Id
@@ -31,6 +30,9 @@ public class Task {
 	@Column(name = "IsDeleted")
 	private boolean isDeleted;
 
+	@Column(name = "Completed")
+	private boolean completed;
+
 	@Column(name = "DueDate")
 	private Timestamp dueDate;
 
@@ -43,4 +45,11 @@ public class Task {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "Updated")
 	private Timestamp updated;
+
+	public Task(String title, String description, String category, Timestamp dueDate) {
+		this.title = title;
+		this.description = description;
+		this.category = category;
+		this.dueDate = dueDate;
+	}
 }
