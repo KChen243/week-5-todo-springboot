@@ -31,8 +31,16 @@ public class TaskService {
 	}
 
 	@Transactional
-	public Task edit(Task udpatedTask) {
-		return this.taskDao.edit(udpatedTask);
+	public Task edit(int id, Task udpatedTask) {
+		Task tempTask = this.taskDao.findById(id);
+		if (tempTask != null) {
+			tempTask.setTitle(udpatedTask.getTitle() != null ? udpatedTask.getTitle() : tempTask.getTitle());
+			tempTask.setDescription(udpatedTask.getDescription() != null ? udpatedTask.getDescription() : tempTask.getDescription());
+			tempTask.setDueDate(udpatedTask.getDueDate() != null ? udpatedTask.getDueDate() : tempTask.getDueDate());
+			tempTask.setDeleted(udpatedTask.isDeleted() != tempTask.isDeleted() ? udpatedTask.isDeleted() : tempTask.isDeleted());
+		}
+
+		return this.taskDao.edit(tempTask);
 	}
 
 	@Transactional
