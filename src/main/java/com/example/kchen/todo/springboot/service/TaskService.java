@@ -31,8 +31,8 @@ public class TaskService {
 	}
 
 	@Transactional
-	public Task update(Task udpatedTask) {
-		return this.taskDao.add(udpatedTask);
+	public Task edit(Task udpatedTask) {
+		return this.taskDao.edit(udpatedTask);
 	}
 
 	@Transactional
