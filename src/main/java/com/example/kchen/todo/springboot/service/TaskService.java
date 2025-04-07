@@ -36,7 +36,7 @@ public class TaskService {
 		if (tempTask != null) {
 			tempTask.setTitle(udpatedTask.getTitle().isEmpty() ? tempTask.getTitle() : udpatedTask.getTitle());
 			tempTask.setDescription(udpatedTask.getDescription().isEmpty() ? tempTask.getDescription() : udpatedTask.getDescription());
-			tempTask.setDescription(udpatedTask.getCategory().isEmpty() ? tempTask.getCategory() : udpatedTask.getCategory());
+			tempTask.setCategory(udpatedTask.getCategory().isEmpty() ? tempTask.getCategory() : udpatedTask.getCategory());
 			tempTask.setDueDate(udpatedTask.getDueDate() != null ? udpatedTask.getDueDate() : tempTask.getDueDate());
 			tempTask.setDeleted(udpatedTask.isDeleted() != tempTask.isDeleted() ? udpatedTask.isDeleted() : tempTask.isDeleted());
 			tempTask.setCompleted(udpatedTask.isCompleted() != tempTask.isCompleted() ? udpatedTask.isCompleted() : tempTask.isCompleted());
