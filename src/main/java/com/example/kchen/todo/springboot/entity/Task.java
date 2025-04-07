@@ -19,11 +19,14 @@ public class Task {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "Title")
+	@Column(name = "Title", length = 250)
 	private String title;
 
-	@Column(name = "Description")
+	@Column(name = "Description", length = 2000)
 	private String description;
+
+	@Column(name = "Category", length = 2000)
+	private String category;
 
 	@Column(name = "IsDeleted")
 	private boolean isDeleted;
