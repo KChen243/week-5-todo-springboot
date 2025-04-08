@@ -23,6 +23,12 @@ public class TaskController {
 		return this.taskService.findAll();
 	}
 
+	@GetMapping("/status")
+	@ResponseBody
+	public List<Task> findTaskByStatus(@RequestParam(name = "status") String status) {
+		return this.taskService.findTaskByStatus(status);
+	}
+
 	@GetMapping("/{id}")
 	public Task findById(@PathVariable(name = "id") int id) {
 		return this.taskService.findById(id);
