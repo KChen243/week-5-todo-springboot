@@ -56,7 +56,7 @@ public class TaskDaoImpl implements TaskDao {
 	public Task deleteById(int id) {
 		Task task = this.findById(id);
 		if (task != null) {
-			this.entityManager.remove(task);
+			task.setDeleted(true);
 			return task;
 		}
 
