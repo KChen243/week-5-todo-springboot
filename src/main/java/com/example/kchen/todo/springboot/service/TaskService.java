@@ -59,7 +59,7 @@ public class TaskService {
 		if (status.equals("completed")) {
 			return tasks
 					.stream()
-					.filter(Task::isCompleted)
+					.filter(t-> t.isCompleted() && !t.isDeleted())
 					.toList();
 		}
 
