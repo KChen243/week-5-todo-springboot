@@ -13,5 +13,5 @@ public interface CategoryDao {
 
 	public Category update(Category updatedCategory);
 
-	public Category delete(int id);
+	public Category delete(Category category);
 }

@@ -50,7 +50,8 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 
 	@Override
-	public Category delete(int id) {
-		return null;
+	public Category delete(Category category) {
+		this.entityManager.remove(category);
+		return category;
 	}
 }

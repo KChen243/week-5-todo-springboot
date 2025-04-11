@@ -3,6 +3,7 @@ package com.example.kchen.todo.springboot.service;
 import com.example.kchen.todo.springboot.entity.Category;
 import com.example.kchen.todo.springboot.entity.Task;
 import com.example.kchen.todo.springboot.repository.CategoryDao;
+import com.example.kchen.todo.springboot.repository.TaskDao;
 import jdk.jfr.StackTrace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 @Service
 public class CategoryService {
 	private CategoryDao categoryDao;
+	private TaskDao taskDao;
 
 	@Autowired
 	public CategoryService(CategoryDao categoryDao) {
@@ -44,7 +46,12 @@ public class CategoryService {
 
 	@Transactional
 	public Category deleteById(int id) {
-		return this.categoryDao.delete(id);
+		Category category = this.categoryDao.findById(id);
+		if (category == null) {
+			return null;
+		}
+
+		return this.categoryDao.delete(category);
 	}
 
 }
