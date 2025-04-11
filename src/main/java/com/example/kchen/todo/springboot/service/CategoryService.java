@@ -1,0 +1,50 @@
+package com.example.kchen.todo.springboot.service;
+
+import com.example.kchen.todo.springboot.entity.Category;
+import com.example.kchen.todo.springboot.entity.Task;
+import com.example.kchen.todo.springboot.repository.CategoryDao;
+import jdk.jfr.StackTrace;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+public class CategoryService {
+	private CategoryDao categoryDao;
+
+	@Autowired
+	public CategoryService(CategoryDao categoryDao) {
+		this.categoryDao = categoryDao;
+	}
+
+	public List<Category> findAll() {
+		return this.categoryDao.findAll();
+	}
+
+	public Category findById(int id) {
+		return this.categoryDao.findById(id);
+	}
+
+	@Transactional
+	public Category add(Category newCategory) {
+		return this.categoryDao.add(newCategory);
+	}
+
+	@Transactional
+	public Category edit(int id, Category updatedCategory) {
+		Category tempCategory = this.categoryDao.findById(id);
+		if (tempCategory != null) {
+			tempCategory.setName(updatedCategory.getName());
+		}
+
+		return this.categoryDao.update(tempCategory);
+	}
+
+	@Transactional
+	public Category deleteById(int id) {
+		return this.categoryDao.delete(id);
+	}
+
+}
