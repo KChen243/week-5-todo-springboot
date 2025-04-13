@@ -22,8 +22,8 @@ public class CategoryService {
 		return this.categoryDao.findAll();
 	}
 
-	public Category findById(int id) {
-		return this.categoryDao.findById(id);
+	public Category find(Integer id) {
+		return this.categoryDao.find(id);
 	}
 
 	@Transactional
@@ -32,8 +32,8 @@ public class CategoryService {
 	}
 
 	@Transactional
-	public Category update(int id, Category updatedCategory) {
-		Category tempCategory = this.categoryDao.findById(id);
+	public Category update(Integer id, Category updatedCategory) {
+		Category tempCategory = this.categoryDao.find(id);
 		if (tempCategory != null) {
 			tempCategory.setName(updatedCategory.getName());
 		}
@@ -42,8 +42,8 @@ public class CategoryService {
 	}
 
 	@Transactional
-	public Category deleteById(int id) {
-		Category category = this.categoryDao.findById(id);
+	public Category delete(Integer id) {
+		Category category = this.categoryDao.find(id);
 		if (category == null) {
 			return null;
 		}

@@ -23,8 +23,8 @@ public class TaskService {
 		return this.taskDao.findAll();
 	}
 
-	public Task findById(int id) {
-		return this.taskDao.findById(id);
+	public Task find(Integer id) {
+		return this.taskDao.find(id);
 	}
 
 	@Transactional
@@ -33,8 +33,8 @@ public class TaskService {
 	}
 
 	@Transactional
-	public Task update(int id, Task udpatedTask) {
-		Task tempTask = this.taskDao.findById(id);
+	public Task update(Integer id, Task udpatedTask) {
+		Task tempTask = this.taskDao.find(id);
 		if (tempTask != null) {
 			tempTask.setTitle(udpatedTask.getTitle().isEmpty() ? tempTask.getTitle() : udpatedTask.getTitle());
 			tempTask.setDescription(udpatedTask.getDescription().isEmpty() ? tempTask.getDescription() : udpatedTask.getDescription());
@@ -48,8 +48,8 @@ public class TaskService {
 	}
 
 	@Transactional
-	public Task deleteById(int id) {
-		return this.taskDao.deleteById(id);
+	public Task delete(Integer id) {
+		return this.taskDao.delete(id);
 	}
 
 	public List<Task> findTaskByStatus(String status) {

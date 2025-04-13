@@ -31,8 +31,8 @@ public class TaskController {
 	}
 
 	@GetMapping("/{id}")
-	public Task findById(@PathVariable(name = "id") Integer id) {
-		return this.taskService.findById(id);
+	public Task find(@PathVariable(name = "id") Integer id) {
+		return this.taskService.find(id);
 	}
 
 	@PostMapping("")
@@ -41,13 +41,13 @@ public class TaskController {
 	}
 
 	@PutMapping("/{id}")
-	public Task updateTask(@PathVariable(name = "id") Integer id, @RequestBody Task updatedTask) {
+	public Task update(@PathVariable(name = "id") Integer id, @RequestBody Task updatedTask) {
 		return this.taskService.update(id, updatedTask);
 	}
 
 	@DeleteMapping("/{id}")
-	public Task deleteById(@PathVariable(name = "id") Integer id) {
-		return this.taskService.deleteById(id);
+	public Task delete(@PathVariable(name = "id") Integer id) {
+		return this.taskService.delete(id);
 	}
 
 }

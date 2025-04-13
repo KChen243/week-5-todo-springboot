@@ -7,7 +7,7 @@ import java.util.List;
 public interface CategoryDao {
 	List<Category> findAll();
 
-	Category findById(Integer id);
+	Category find(Integer id);
 
 	Category add(Category newCategory);
 
