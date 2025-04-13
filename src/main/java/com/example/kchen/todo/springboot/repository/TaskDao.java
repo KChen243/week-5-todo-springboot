@@ -7,11 +7,11 @@ import java.util.List;
 public interface TaskDao {
 	public List<Task> findAll();
 
-	public Task findById(int id);
+	public Task findById(Integer id);
 
 	public Task add(Task newTask);
 
 	public Task edit(Task updatedTask);
 
-	public Task deleteById(int id);
+	public Task deleteById(Integer id);
 }

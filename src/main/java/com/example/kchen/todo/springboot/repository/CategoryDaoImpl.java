@@ -28,7 +28,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 
 	@Override
-	public Category findById(int id) {
+	public Category findById(Integer id) {
 		Category category =  this.entityManager.find(Category.class, id);
 		if(category == null) {
 			throw new CategoryNotFound("Category with ID: " + id + " is not found!");

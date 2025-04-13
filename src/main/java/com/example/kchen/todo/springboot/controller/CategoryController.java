@@ -27,7 +27,7 @@ public class CategoryController {
 	}
 
 	@GetMapping("/{id}")
-	public Category findById(@PathVariable(name = "id") int id) {
+	public Category findById(@PathVariable(name = "id") Integer id) {
 		return this.categoryService.findById(id);
 	}
 
@@ -37,12 +37,12 @@ public class CategoryController {
 	}
 
 	@PutMapping("/{id}")
-	public Category editCategory(@PathVariable(name = "id") int id, @RequestBody Category updatedCategory) {
+	public Category editCategory(@PathVariable(name = "id") Integer id, @RequestBody Category updatedCategory) {
 		return this.categoryService.edit(id, updatedCategory);
 	}
 
 	@DeleteMapping("/{id}")
-	public Category deleteById(@PathVariable(name = "id") int id) {
+	public Category deleteById(@PathVariable(name = "id") Integer id) {
 		return this.categoryService.deleteById(id);
 	}
 
