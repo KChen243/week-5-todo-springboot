@@ -1,7 +1,7 @@
 package com.example.kchen.todo.springboot.repository;
 
 import com.example.kchen.todo.springboot.entity.Category;
-import com.example.kchen.todo.springboot.exception.CategoryNotFound;
+import com.example.kchen.todo.springboot.exception.CategoryNotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
@@ -29,7 +29,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	public Category findById(Integer id) {
 		Category category = this.entityManager.find(Category.class, id);
 		if (category == null) {
-			throw new CategoryNotFound("Category with ID: " + id + " is not found!");
+			throw new CategoryNotFoundException("Category with ID: " + id + " is not found!");
 		}
 
 		return category;

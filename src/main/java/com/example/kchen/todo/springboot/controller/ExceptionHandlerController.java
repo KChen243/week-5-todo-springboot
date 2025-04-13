@@ -1,7 +1,7 @@
 package com.example.kchen.todo.springboot.controller;
 
 import com.example.kchen.todo.springboot.entity.ExceptionResponse;
-import com.example.kchen.todo.springboot.exception.TaskNotFound;
+import com.example.kchen.todo.springboot.exception.TaskNotFoundexception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionHandlerController {
 
 	@ExceptionHandler
-	public ResponseEntity<ExceptionResponse> handleExceptions(TaskNotFound e) {
+	public ResponseEntity<ExceptionResponse> handleExceptions(TaskNotFoundexception e) {
 		ExceptionResponse error = new ExceptionResponse();
 
 		error.setStatus(HttpStatus.NOT_FOUND.value());
