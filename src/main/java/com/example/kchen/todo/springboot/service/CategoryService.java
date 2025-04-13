@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class CategoryService {
 	private final CategoryDao categoryDao;
-	private TaskDao taskDao;
 
 	@Autowired
 	public CategoryService(CategoryDao categoryDao) {

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
-	EntityManager entityManager;
+	private final EntityManager entityManager;
 
 	public CategoryDaoImpl(EntityManager entityManager) {
 		this.entityManager = entityManager;
