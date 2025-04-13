@@ -20,32 +20,32 @@ public class Task {
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "Title", length = 250)
+	@Column(name = "title", length = 250)
 	private String title;
 
-	@Column(name = "Description", length = 2000)
+	@Column(name = "description", length = 2000)
 	private String description;
 
-	@Column(name = "Category", length = 2000)
+	@Column(name = "category", length = 2000)
 	private String category;
 
-	@Column(name = "IsDeleted")
+	@Column(name = "is_deleted")
 	private boolean isDeleted;
 
-	@Column(name = "Completed")
+	@Column(name = "completed")
 	private boolean completed;
 
-	@Column(name = "DueDate")
+	@Column(name = "due_date")
 	private Timestamp dueDate;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "Created", updatable = false)
+	@Column(name = "created", updatable = false)
 	private Timestamp created;
 
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "Updated")
+	@Column(name = "updated")
 	private Timestamp updated;
 
 	public Task(String title, String description, String category, Timestamp dueDate) {
