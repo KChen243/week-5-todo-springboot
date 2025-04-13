@@ -5,13 +5,13 @@ import com.example.kchen.todo.springboot.entity.Task;
 import java.util.List;
 
 public interface TaskDao {
-	public List<Task> findAll();
+	List<Task> findAll();
 
-	public Task findById(Integer id);
+	Task findById(Integer id);
 
-	public Task add(Task newTask);
+	Task add(Task newTask);
 
-	public Task edit(Task updatedTask);
+	Task edit(Task updatedTask);
 
-	public Task deleteById(Integer id);
+	Task deleteById(Integer id);
 }

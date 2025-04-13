@@ -1,10 +1,8 @@
 package com.example.kchen.todo.springboot.service;
 
 import com.example.kchen.todo.springboot.entity.Category;
-import com.example.kchen.todo.springboot.entity.Task;
 import com.example.kchen.todo.springboot.repository.CategoryDao;
 import com.example.kchen.todo.springboot.repository.TaskDao;
-import jdk.jfr.StackTrace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +11,7 @@ import java.util.List;
 
 @Service
 public class CategoryService {
-	private CategoryDao categoryDao;
+	private final CategoryDao categoryDao;
 	private TaskDao taskDao;
 
 	@Autowired

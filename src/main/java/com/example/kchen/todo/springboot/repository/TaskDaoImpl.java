@@ -4,7 +4,6 @@ import com.example.kchen.todo.springboot.entity.Task;
 import com.example.kchen.todo.springboot.exception.TaskNotFound;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @Repository
 public class TaskDaoImpl implements TaskDao {
-	private EntityManager entityManager;
+	private final EntityManager entityManager;
 
 	public TaskDaoImpl(EntityManager entityManager) {
 		this.entityManager = entityManager;

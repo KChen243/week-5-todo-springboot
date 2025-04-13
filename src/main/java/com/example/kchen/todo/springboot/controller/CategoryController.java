@@ -2,7 +2,6 @@ package com.example.kchen.todo.springboot.controller;
 
 import com.example.kchen.todo.springboot.entity.Category;
 import com.example.kchen.todo.springboot.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 		allowedHeaders = "*",
 		methods = {RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class CategoryController {
-	private CategoryService categoryService;
+	private final CategoryService categoryService;
 
 	public CategoryController(CategoryService categoryService) {
 		this.categoryService = categoryService;

@@ -5,13 +5,13 @@ import com.example.kchen.todo.springboot.entity.Category;
 import java.util.List;
 
 public interface CategoryDao {
-	public List<Category> findAll();
+	List<Category> findAll();
 
-	public Category findById(Integer id);
+	Category findById(Integer id);
 
-	public Category add(Category newCategory);
+	Category add(Category newCategory);
 
-	public Category update(Category updatedCategory);
+	Category update(Category updatedCategory);
 
-	public Category delete(Category category);
+	Category delete(Category category);
 }

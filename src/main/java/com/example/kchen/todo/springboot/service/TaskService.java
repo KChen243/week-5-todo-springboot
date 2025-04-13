@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class TaskService {
-	private TaskDao taskDao;
+	private final TaskDao taskDao;
 
 	@Autowired
 	public TaskService(TaskDao taskDao) {
@@ -59,7 +59,7 @@ public class TaskService {
 		if (status.equals("completed")) {
 			return tasks
 					.stream()
-					.filter(t-> t.isCompleted() && !t.isDeleted())
+					.filter(t -> t.isCompleted() && !t.isDeleted())
 					.toList();
 		}
 

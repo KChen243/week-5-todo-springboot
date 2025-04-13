@@ -5,7 +5,6 @@ import com.example.kchen.todo.springboot.jwt.CustomJwtConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,8 +28,8 @@ public class SecurityConfig {
 						.anyRequest().permitAll()
 				)
 				.oauth2ResourceServer((oauth2) -> oauth2.jwt(
-				jwt -> jwt.jwtAuthenticationConverter(customJwtConverter())
-		));
+						jwt -> jwt.jwtAuthenticationConverter(customJwtConverter())
+				));
 		return http.build();
 	}
 
