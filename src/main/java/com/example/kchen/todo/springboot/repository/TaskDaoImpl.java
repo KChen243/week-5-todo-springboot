@@ -45,7 +45,7 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@Override
-	public Task edit(Task updatedTask) {
+	public Task update(Task updatedTask) {
 		this.entityManager.merge(updatedTask);
 		return updatedTask;
 	}

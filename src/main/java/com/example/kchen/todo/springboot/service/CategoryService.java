@@ -32,7 +32,7 @@ public class CategoryService {
 	}
 
 	@Transactional
-	public Category edit(int id, Category updatedCategory) {
+	public Category update(int id, Category updatedCategory) {
 		Category tempCategory = this.categoryDao.findById(id);
 		if (tempCategory != null) {
 			tempCategory.setName(updatedCategory.getName());

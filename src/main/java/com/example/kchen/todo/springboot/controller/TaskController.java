@@ -41,8 +41,8 @@ public class TaskController {
 	}
 
 	@PutMapping("/{id}")
-	public Task editTask(@PathVariable(name = "id") Integer id, @RequestBody Task updatedTask) {
-		return this.taskService.edit(id, updatedTask);
+	public Task updateTask(@PathVariable(name = "id") Integer id, @RequestBody Task updatedTask) {
+		return this.taskService.update(id, updatedTask);
 	}
 
 	@DeleteMapping("/{id}")

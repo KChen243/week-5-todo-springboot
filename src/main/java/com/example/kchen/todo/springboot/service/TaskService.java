@@ -33,7 +33,7 @@ public class TaskService {
 	}
 
 	@Transactional
-	public Task edit(int id, Task udpatedTask) {
+	public Task update(int id, Task udpatedTask) {
 		Task tempTask = this.taskDao.findById(id);
 		if (tempTask != null) {
 			tempTask.setTitle(udpatedTask.getTitle().isEmpty() ? tempTask.getTitle() : udpatedTask.getTitle());
@@ -44,7 +44,7 @@ public class TaskService {
 			tempTask.setCompleted(udpatedTask.isCompleted() != tempTask.isCompleted() ? udpatedTask.isCompleted() : tempTask.isCompleted());
 		}
 
-		return this.taskDao.edit(tempTask);
+		return this.taskDao.update(tempTask);
 	}
 
 	@Transactional
@@ -77,7 +77,6 @@ public class TaskService {
 					.filter(t -> t.getDueDate().compareTo(today) < 0 && !t.isCompleted() && !t.isDeleted())
 					.toList();
 		}
-
 
 		if (status.equals("upcoming")) {
 			Date today = new Date();

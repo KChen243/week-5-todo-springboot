@@ -35,8 +35,8 @@ public class CategoryController {
 	}
 
 	@PutMapping("/{id}")
-	public Category editCategory(@PathVariable(name = "id") Integer id, @RequestBody Category updatedCategory) {
-		return this.categoryService.edit(id, updatedCategory);
+	public Category updateCategory(@PathVariable(name = "id") Integer id, @RequestBody Category updatedCategory) {
+		return this.categoryService.update(id, updatedCategory);
 	}
 
 	@DeleteMapping("/{id}")
