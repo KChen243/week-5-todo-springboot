@@ -13,7 +13,6 @@ import java.util.List;
 public class CategoryDaoImpl implements CategoryDao{
 	EntityManager entityManager;
 
-	@Autowired
 	public CategoryDaoImpl(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}

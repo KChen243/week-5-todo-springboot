@@ -14,7 +14,6 @@ import java.util.List;
 public class TaskDaoImpl implements TaskDao {
 	private EntityManager entityManager;
 
-	@Autowired
 	public TaskDaoImpl(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
@@ -32,8 +31,8 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public Task findById(Integer id) {
-		Task task =  this.entityManager.find(Task.class, id);
-		if(task == null) {
+		Task task = this.entityManager.find(Task.class, id);
+		if (task == null) {
 			throw new TaskNotFound("Task id: " + id + " is not found!");
 		}
 
