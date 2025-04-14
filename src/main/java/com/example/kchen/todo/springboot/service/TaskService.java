@@ -35,14 +35,16 @@ public class TaskService {
 	@Transactional
 	public Task update(Integer id, Task udpatedTask) {
 		Task tempTask = this.taskDao.find(id);
-		if (tempTask != null) {
-			tempTask.setTitle(udpatedTask.getTitle().isEmpty() ? tempTask.getTitle() : udpatedTask.getTitle());
-			tempTask.setDescription(udpatedTask.getDescription().isEmpty() ? tempTask.getDescription() : udpatedTask.getDescription());
-			tempTask.setCategory(udpatedTask.getCategory().isEmpty() ? tempTask.getCategory() : udpatedTask.getCategory());
-			tempTask.setDueDate(udpatedTask.getDueDate() != null ? udpatedTask.getDueDate() : tempTask.getDueDate());
-			tempTask.setDeleted(udpatedTask.isDeleted() != tempTask.isDeleted() ? udpatedTask.isDeleted() : tempTask.isDeleted());
-			tempTask.setCompleted(udpatedTask.isCompleted() != tempTask.isCompleted() ? udpatedTask.isCompleted() : tempTask.isCompleted());
+		if (tempTask == null) {
+			throw new TaskNotFoundException("Task id: " + id + " is not found!");
 		}
+
+		tempTask.setTitle(udpatedTask.getTitle().isEmpty() ? tempTask.getTitle() : udpatedTask.getTitle());
+		tempTask.setDescription(udpatedTask.getDescription().isEmpty() ? tempTask.getDescription() : udpatedTask.getDescription());
+		tempTask.setCategory(udpatedTask.getCategory().isEmpty() ? tempTask.getCategory() : udpatedTask.getCategory());
+		tempTask.setDueDate(udpatedTask.getDueDate() != null ? udpatedTask.getDueDate() : tempTask.getDueDate());
+		tempTask.setDeleted(udpatedTask.isDeleted());
+		tempTask.setCompleted(udpatedTask.isCompleted());
 
 		return this.taskDao.update(tempTask);
 	}
