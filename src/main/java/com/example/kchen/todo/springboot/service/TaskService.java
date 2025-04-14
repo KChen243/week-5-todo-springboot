@@ -20,7 +20,9 @@ public class TaskService {
 	}
 
 	public List<Task> findAll() {
-		return this.taskDao.findAll();
+		return this.taskDao.findAll().stream()
+				.filter(t->!t.isDeleted())
+				.toList();
 	}
 
 	public Task find(Integer id) {
