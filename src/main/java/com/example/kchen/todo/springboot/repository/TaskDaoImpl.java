@@ -17,7 +17,6 @@ public class TaskDaoImpl implements TaskDao {
 		this.entityManager = entityManager;
 	}
 
-
 	@Override
 	public List<Task> findAll() {
 		TypedQuery<Task> query = this.entityManager.createQuery(
@@ -53,11 +52,11 @@ public class TaskDaoImpl implements TaskDao {
 	@Override
 	public Task delete(Integer id) {
 		Task task = this.find(id);
-		if (task != null) {
-			task.setDeleted(true);
-			return task;
+		if (task == null) {
+			throw new TaskNotFoundexception("Task id: " + id + " is not found!");
 		}
 
-		return null;
+		task.setDeleted(true);
+		return task;
 	}
 }
