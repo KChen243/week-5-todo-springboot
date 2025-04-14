@@ -5,6 +5,7 @@ import com.example.kchen.todo.springboot.entity.Category;
 import com.example.kchen.todo.springboot.entity.Task;
 import com.example.kchen.todo.springboot.exception.TaskNotFoundException;
 import com.example.kchen.todo.springboot.repository.TaskDao;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,6 +54,15 @@ public class TaskService {
 		return this.taskDao.add(newTask);
 	}
 
+	// helper method to determine what string to save
+	private String checkUpdate(String updatedValue) {
+		if(StringUtils.isEmpty(updatedValue)) {
+			return "";
+		}
+
+		return updatedValue;
+	}
+
 	@Transactional
 	public Task update(Integer id, TaskCategoryId updatedTask) {
 		if (this.taskDao.findByid(id) == null) {
@@ -61,8 +71,9 @@ public class TaskService {
 
 		Task tempTask = new Task();
 		tempTask.setId(id);
-		tempTask.setTitle(updatedTask.getTask().getTitle());
-		tempTask.setDescription(updatedTask.getTask().getDescription());
+
+		tempTask.setTitle(this.checkUpdate(updatedTask.getTask().getTitle()));
+		tempTask.setDescription(this.checkUpdate(updatedTask.getTask().getDescription()));
 		tempTask.setDueDate(updatedTask.getTask().getDueDate());
 		tempTask.setCompleted(updatedTask.getTask().isCompleted());
 		if (updatedTask.getCategoryId() != null) {
