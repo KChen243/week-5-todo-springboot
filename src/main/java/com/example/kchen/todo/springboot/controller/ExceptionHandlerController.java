@@ -1,6 +1,7 @@
 package com.example.kchen.todo.springboot.controller;
 
 import com.example.kchen.todo.springboot.entity.ExceptionResponse;
+import com.example.kchen.todo.springboot.exception.CategoryNotFoundException;
 import com.example.kchen.todo.springboot.exception.TaskNotFoundexception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,17 @@ public class ExceptionHandlerController {
 
 	@ExceptionHandler
 	public ResponseEntity<ExceptionResponse> handleExceptions(TaskNotFoundexception e) {
+		ExceptionResponse error = new ExceptionResponse();
+
+		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setMessage(e.getMessage());
+		error.setTimestamp(System.currentTimeMillis());
+
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler
+	public ResponseEntity<ExceptionResponse> handleExceptions(CategoryNotFoundException e) {
 		ExceptionResponse error = new ExceptionResponse();
 
 		error.setStatus(HttpStatus.NOT_FOUND.value());
