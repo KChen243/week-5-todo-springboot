@@ -1,8 +1,8 @@
 package com.example.kchen.todo.springboot.service;
 
 import com.example.kchen.todo.springboot.entity.Category;
+import com.example.kchen.todo.springboot.exception.CategoryNotFoundException;
 import com.example.kchen.todo.springboot.repository.CategoryDao;
-import com.example.kchen.todo.springboot.repository.TaskDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,10 +34,11 @@ public class CategoryService {
 	@Transactional
 	public Category update(Integer id, Category updatedCategory) {
 		Category tempCategory = this.categoryDao.find(id);
-		if (tempCategory != null) {
-			tempCategory.setName(updatedCategory.getName());
+		if (tempCategory == null) {
+			throw new CategoryNotFoundException("Category id: " + id + " is not found!");
 		}
 
+		tempCategory.setName(updatedCategory.getName());
 		return this.categoryDao.update(tempCategory);
 	}
 
@@ -45,7 +46,7 @@ public class CategoryService {
 	public Category delete(Integer id) {
 		Category category = this.categoryDao.find(id);
 		if (category == null) {
-			return null;
+			throw new CategoryNotFoundException("Category id: " + id + " is not found!");
 		}
 
 		return this.categoryDao.delete(category);
