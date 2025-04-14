@@ -1,4 +1,4 @@
-package com.example.kchen.todo.springboot.entity;
+package com.example.kchen.todo.springboot.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
