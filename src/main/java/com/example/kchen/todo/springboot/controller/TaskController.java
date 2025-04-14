@@ -1,5 +1,6 @@
 package com.example.kchen.todo.springboot.controller;
 
+import com.example.kchen.todo.springboot.dto.TaskCategoryId;
 import com.example.kchen.todo.springboot.entity.Task;
 import com.example.kchen.todo.springboot.service.TaskService;
 import org.springframework.web.bind.annotation.*;
@@ -32,12 +33,12 @@ public class TaskController {
 	}
 
 	@PostMapping("")
-	public Task add(@RequestBody Task newTask) {
-		return this.taskService.add(newTask);
+	public Task add(@RequestBody TaskCategoryId newTaskDto) {
+		return this.taskService.add(newTaskDto);
 	}
 
 	@PutMapping("/{id}")
-	public Task update(@PathVariable(name = "id") Integer id, @RequestBody Task updatedTask) {
+	public Task update(@PathVariable(name = "id") Integer id, @RequestBody TaskCategoryId updatedTask) {
 		return this.taskService.update(id, updatedTask);
 	}
 

@@ -26,9 +26,6 @@ public class Task {
 	@Column(name = "description", length = 2000)
 	private String description;
 
-	@Column(name = "category", length = 2000)
-	private String category;
-
 	@Column(name = "is_deleted")
 	private boolean isDeleted;
 
@@ -37,6 +34,10 @@ public class Task {
 
 	@Column(name = "due_date")
 	private Timestamp dueDate;
+
+	@ManyToOne
+	@JoinColumn(name="category_id")
+	private Category category;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -48,7 +49,7 @@ public class Task {
 	@Column(name = "updated")
 	private Timestamp updated;
 
-	public Task(String title, String description, String category, Timestamp dueDate) {
+	public Task(String title, String description, Category category, Timestamp dueDate) {
 		this.title = title;
 		this.description = description;
 		this.category = category;

@@ -1,9 +1,11 @@
 package com.example.kchen.todo.springboot.service;
 
+import com.example.kchen.todo.springboot.dto.TaskCategoryId;
+import com.example.kchen.todo.springboot.entity.Category;
 import com.example.kchen.todo.springboot.entity.Task;
 import com.example.kchen.todo.springboot.exception.TaskNotFoundException;
+import com.example.kchen.todo.springboot.repository.CategoryDao;
 import com.example.kchen.todo.springboot.repository.TaskDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +15,11 @@ import java.util.List;
 @Service
 public class TaskService {
 	private final TaskDao taskDao;
+	private final CategoryService categoryService;
 
-	@Autowired
-	public TaskService(TaskDao taskDao) {
+	public TaskService(TaskDao taskDao, CategoryService categoryService) {
 		this.taskDao = taskDao;
+		this.categoryService = categoryService;
 	}
 
 	public List<Task> findAll() {
@@ -34,22 +37,42 @@ public class TaskService {
 	}
 
 	@Transactional
-	public Task add(Task newTask) {
+	public Task add(TaskCategoryId newTaskDto) {
+		Task newTask = new Task();
+
+		newTask.setTitle(newTaskDto.getTask().getTitle());
+		newTask.setDescription(newTaskDto.getTask().getDescription());
+		newTask.setDueDate(newTaskDto.getTask().getDueDate());
+
+		if (newTaskDto.getCategoryId() != null) {
+			Category category = this.categoryService.findByid(newTaskDto.getCategoryId());
+			if (category != null) {
+				newTask.setCategory(category);
+			}
+		}
+
 		return this.taskDao.add(newTask);
 	}
 
 	@Transactional
-	public Task update(Integer id, Task udpatedTask) {
-		Task tempTask = this.taskDao.findByid(id);
-		if (tempTask == null) {
+	public Task update(Integer id, TaskCategoryId updatedTask) {
+		if (this.taskDao.findByid(id) == null) {
 			throw new TaskNotFoundException("Task id: " + id + " is not found!");
 		}
 
-		tempTask.setTitle(udpatedTask.getTitle().isEmpty() ? tempTask.getTitle() : udpatedTask.getTitle());
-		tempTask.setDescription(udpatedTask.getDescription().isEmpty() ? tempTask.getDescription() : udpatedTask.getDescription());
-		tempTask.setCategory(udpatedTask.getCategory());
-		tempTask.setDueDate(udpatedTask.getDueDate() != null ? udpatedTask.getDueDate() : tempTask.getDueDate());
-		tempTask.setCompleted(udpatedTask.isCompleted());
+		Task tempTask = new Task();
+		tempTask.setId(id);
+		tempTask.setTitle(updatedTask.getTask().getTitle());
+		tempTask.setDescription(updatedTask.getTask().getDescription());
+		tempTask.setDueDate(updatedTask.getTask().getDueDate());
+		tempTask.setCompleted(updatedTask.getTask().isCompleted());
+		if (updatedTask.getCategoryId() != null) {
+			Category category = this.categoryService.findByid(updatedTask.getCategoryId());
+			if (category != null) {
+				tempTask.setCategory(category);
+			}
+
+		}
 
 		return this.taskDao.update(tempTask);
 	}

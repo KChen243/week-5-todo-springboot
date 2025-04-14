@@ -2,6 +2,7 @@ package com.example.kchen.todo.springboot.controller;
 
 import com.example.kchen.todo.springboot.entity.Category;
 import com.example.kchen.todo.springboot.service.CategoryService;
+import com.example.kchen.todo.springboot.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class CategoryController {
 	private final CategoryService categoryService;
 
-	public CategoryController(CategoryService categoryService) {
+	public CategoryController(CategoryService categoryService, TaskService taskService) {
 		this.categoryService = categoryService;
 	}
 
