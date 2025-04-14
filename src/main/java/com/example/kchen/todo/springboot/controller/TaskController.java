@@ -29,7 +29,7 @@ public class TaskController {
 
 	@GetMapping("/{id}")
 	public Task find(@PathVariable(name = "id") Integer id) {
-		return this.taskService.findByid(id);
+		return this.taskService.findById(id);
 	}
 
 	@PostMapping("")

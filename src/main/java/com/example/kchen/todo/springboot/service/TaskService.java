@@ -4,7 +4,6 @@ import com.example.kchen.todo.springboot.dto.TaskCategoryId;
 import com.example.kchen.todo.springboot.entity.Category;
 import com.example.kchen.todo.springboot.entity.Task;
 import com.example.kchen.todo.springboot.exception.TaskNotFoundException;
-import com.example.kchen.todo.springboot.repository.CategoryDao;
 import com.example.kchen.todo.springboot.repository.TaskDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +27,7 @@ public class TaskService {
 				.toList();
 	}
 
-	public Task findByid(Integer id) {
+	public Task findById(Integer id) {
 		Task task = this.taskDao.findByid(id);
 		if (task == null) {
 			throw new TaskNotFoundException("Task id: " + id + " is not found!");
