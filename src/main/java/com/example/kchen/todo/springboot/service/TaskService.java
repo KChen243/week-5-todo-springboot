@@ -49,7 +49,6 @@ public class TaskService {
 		tempTask.setDescription(udpatedTask.getDescription().isEmpty() ? tempTask.getDescription() : udpatedTask.getDescription());
 		tempTask.setCategory(udpatedTask.getCategory().isEmpty() ? tempTask.getCategory() : udpatedTask.getCategory());
 		tempTask.setDueDate(udpatedTask.getDueDate() != null ? udpatedTask.getDueDate() : tempTask.getDueDate());
-		tempTask.setDeleted(udpatedTask.isDeleted());
 		tempTask.setCompleted(udpatedTask.isCompleted());
 
 		return this.taskDao.update(tempTask);
