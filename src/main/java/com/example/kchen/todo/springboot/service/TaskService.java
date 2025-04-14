@@ -57,7 +57,12 @@ public class TaskService {
 
 	@Transactional
 	public Task delete(Integer id) {
-		return this.taskDao.delete(id);
+		Task task = this.taskDao.find(id);
+		if (task == null) {
+			throw new TaskNotFoundException("Task id: " + id + " is not found!");
+		}
+
+		return this.taskDao.delete(task);
 	}
 
 	public List<Task> findTaskByStatus(String status) {

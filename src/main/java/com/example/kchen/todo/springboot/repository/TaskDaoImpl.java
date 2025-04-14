@@ -29,12 +29,7 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public Task find(Integer id) {
-		Task task = this.entityManager.find(Task.class, id);
-		if (task == null) {
-			throw new TaskNotFoundException("Task id: " + id + " is not found!");
-		}
-
-		return task;
+		return this.entityManager.find(Task.class, id);
 	}
 
 	@Override
@@ -50,12 +45,7 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@Override
-	public Task delete(Integer id) {
-		Task task = this.find(id);
-		if (task == null) {
-			throw new TaskNotFoundException("Task id: " + id + " is not found!");
-		}
-
+	public Task delete(Task task) {
 		task.setDeleted(true);
 		return task;
 	}

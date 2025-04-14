@@ -13,5 +13,5 @@ public interface TaskDao {
 
 	Task update(Task updatedTask);
 
-	Task delete(Integer id);
+	Task delete(Task task);
 }
