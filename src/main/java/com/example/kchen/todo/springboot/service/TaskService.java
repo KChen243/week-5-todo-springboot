@@ -56,36 +56,34 @@ public class TaskService {
 
 	public List<Task> findTaskByStatus(String status) {
 		List<Task> tasks = this.taskDao.findAll();
-		List<Task> filteredTask = new ArrayList<>();
 
-		if (status.equals("completed")) {
-			return tasks
-					.stream()
-					.filter(t -> t.isCompleted() && !t.isDeleted())
-					.toList();
-		}
-
-		if (status.equals("deleted")) {
-			return tasks
-					.stream()
-					.filter(Task::isDeleted)
-					.toList();
-		}
-
-		if (status.equals("overdue")) {
-			Date today = new Date();
-			return tasks
-					.stream()
-					.filter(t -> t.getDueDate().compareTo(today) < 0 && !t.isCompleted() && !t.isDeleted())
-					.toList();
-		}
-
-		if (status.equals("upcoming")) {
-			Date today = new Date();
-			return tasks
-					.stream()
-					.filter(t -> !t.isCompleted() && !t.isDeleted() && (t.getDueDate().compareTo(today) > 0 || t.getDueDate().equals(today)))
-					.toList();
+		switch (status) {
+			case "completed" -> {
+				return tasks
+						.stream()
+						.filter(t -> t.isCompleted() && !t.isDeleted())
+						.toList();
+			}
+			case "deleted" -> {
+				return tasks
+						.stream()
+						.filter(Task::isDeleted)
+						.toList();
+			}
+			case "overdue" -> {
+				Date today = new Date();
+				return tasks
+						.stream()
+						.filter(t -> t.getDueDate().compareTo(today) < 0 && !t.isCompleted() && !t.isDeleted())
+						.toList();
+			}
+			case "upcoming" -> {
+				Date today = new Date();
+				return tasks
+						.stream()
+						.filter(t -> !t.isCompleted() && !t.isDeleted() && (t.getDueDate().compareTo(today) > 0 || t.getDueDate().equals(today)))
+						.toList();
+			}
 		}
 
 		throw new RuntimeException("Invalid parameter");
