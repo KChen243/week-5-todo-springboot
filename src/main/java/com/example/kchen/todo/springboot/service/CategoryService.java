@@ -23,8 +23,8 @@ public class CategoryService {
 		return this.categoryDao.findAll();
 	}
 
-	public Category find(Integer id) {
-		return this.categoryDao.find(id);
+	public Category findByid(Integer id) {
+		return this.categoryDao.findByid(id);
 	}
 
 	@Transactional
@@ -34,7 +34,7 @@ public class CategoryService {
 
 	@Transactional
 	public Category update(Integer id, Category updatedCategory) {
-		Category tempCategory = this.categoryDao.find(id);
+		Category tempCategory = this.categoryDao.findByid(id);
 		if (tempCategory == null) {
 			throw new CategoryNotFoundException("Category id: " + id + " is not found!");
 		}
@@ -45,7 +45,7 @@ public class CategoryService {
 
 	@Transactional
 	public Category delete(Integer id) {
-		Category category = this.categoryDao.find(id);
+		Category category = this.categoryDao.findByid(id);
 		if (category == null) {
 			throw new CategoryNotFoundException("Category id: " + id + " is not found!");
 		}

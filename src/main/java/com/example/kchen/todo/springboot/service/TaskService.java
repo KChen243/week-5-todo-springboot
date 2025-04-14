@@ -25,8 +25,8 @@ public class TaskService {
 				.toList();
 	}
 
-	public Task find(Integer id) {
-		Task task = this.taskDao.find(id);
+	public Task findByid(Integer id) {
+		Task task = this.taskDao.findByid(id);
 		if (task == null) {
 			throw new TaskNotFoundException("Task id: " + id + " is not found!");
 		}
@@ -40,14 +40,14 @@ public class TaskService {
 
 	@Transactional
 	public Task update(Integer id, Task udpatedTask) {
-		Task tempTask = this.taskDao.find(id);
+		Task tempTask = this.taskDao.findByid(id);
 		if (tempTask == null) {
 			throw new TaskNotFoundException("Task id: " + id + " is not found!");
 		}
 
 		tempTask.setTitle(udpatedTask.getTitle().isEmpty() ? tempTask.getTitle() : udpatedTask.getTitle());
 		tempTask.setDescription(udpatedTask.getDescription().isEmpty() ? tempTask.getDescription() : udpatedTask.getDescription());
-		tempTask.setCategory(udpatedTask.getCategory().isEmpty() ? tempTask.getCategory() : udpatedTask.getCategory());
+		tempTask.setCategory(udpatedTask.getCategory());
 		tempTask.setDueDate(udpatedTask.getDueDate() != null ? udpatedTask.getDueDate() : tempTask.getDueDate());
 		tempTask.setCompleted(udpatedTask.isCompleted());
 
@@ -56,7 +56,7 @@ public class TaskService {
 
 	@Transactional
 	public Task delete(Integer id) {
-		Task task = this.taskDao.find(id);
+		Task task = this.taskDao.findByid(id);
 		if (task == null) {
 			throw new TaskNotFoundException("Task id: " + id + " is not found!");
 		}

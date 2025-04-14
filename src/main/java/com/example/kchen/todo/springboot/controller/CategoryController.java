@@ -22,7 +22,7 @@ public class CategoryController {
 
 	@GetMapping("/{id}")
 	public Category find(@PathVariable(name = "id") Integer id) {
-		return this.categoryService.find(id);
+		return this.categoryService.findByid(id);
 	}
 
 	@PostMapping("")

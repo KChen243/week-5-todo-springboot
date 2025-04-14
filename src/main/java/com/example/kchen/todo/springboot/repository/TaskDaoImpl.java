@@ -28,7 +28,7 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@Override
-	public Task find(Integer id) {
+	public Task findByid(Integer id) {
 		return this.entityManager.find(Task.class, id);
 	}
 

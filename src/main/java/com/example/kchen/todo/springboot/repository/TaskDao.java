@@ -7,7 +7,7 @@ import java.util.List;
 public interface TaskDao {
 	List<Task> findAll();
 
-	Task find(Integer id);
+	Task findByid(Integer id);
 
 	Task add(Task newTask);
 
