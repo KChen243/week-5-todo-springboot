@@ -1,12 +1,12 @@
 package com.example.kchen.todo.springboot.service;
 
 import com.example.kchen.todo.springboot.entity.Task;
+import com.example.kchen.todo.springboot.exception.TaskNotFoundException;
 import com.example.kchen.todo.springboot.repository.TaskDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +24,11 @@ public class TaskService {
 	}
 
 	public Task find(Integer id) {
-		return this.taskDao.find(id);
+		Task task = this.taskDao.find(id);
+		if (task == null) {
+			throw new TaskNotFoundException("Task id: " + id + " is not found!");
+		}
+		return task;
 	}
 
 	@Transactional
