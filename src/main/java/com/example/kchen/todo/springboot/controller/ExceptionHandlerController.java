@@ -1,7 +1,7 @@
 package com.example.kchen.todo.springboot.controller;
 
-import com.example.kchen.todo.springboot.exception.ExceptionResponse;
 import com.example.kchen.todo.springboot.exception.CategoryNotFoundException;
+import com.example.kchen.todo.springboot.exception.ExceptionResponse;
 import com.example.kchen.todo.springboot.exception.TaskNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

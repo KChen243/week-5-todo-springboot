@@ -27,7 +27,6 @@ public class CustomJwtConverter implements Converter<Jwt, CustomJwt> {
 	private Collection<GrantedAuthority> extractAuthorities(Jwt jwt) {
 		var authorities = new ArrayList<GrantedAuthority>();
 
-		// ... your logic to extract and map the claims to GrantedAuthority ...
 		var realm_access = jwt.getClaimAsMap("realm_access");
 		if (realm_access != null && realm_access.get("roles") != null) {
 			var roles = realm_access.get("roles");

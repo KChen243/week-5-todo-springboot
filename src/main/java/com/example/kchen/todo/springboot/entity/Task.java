@@ -36,7 +36,7 @@ public class Task {
 	private Timestamp dueDate;
 
 	@ManyToOne
-	@JoinColumn(name="category_id")
+	@JoinColumn(name = "category_id")
 	private Category category;
 
 	@CreationTimestamp

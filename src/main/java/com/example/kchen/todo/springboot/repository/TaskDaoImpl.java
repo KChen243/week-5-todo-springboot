@@ -1,7 +1,6 @@
 package com.example.kchen.todo.springboot.repository;
 
 import com.example.kchen.todo.springboot.entity.Task;
-import com.example.kchen.todo.springboot.exception.TaskNotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;

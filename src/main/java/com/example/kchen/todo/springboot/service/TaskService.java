@@ -56,7 +56,7 @@ public class TaskService {
 
 	// helper method to determine what string to save
 	private String checkUpdate(String updatedValue) {
-		if(StringUtils.isEmpty(updatedValue)) {
+		if (StringUtils.isEmpty(updatedValue)) {
 			return "";
 		}
 
