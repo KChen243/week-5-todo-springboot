@@ -1,0 +1,51 @@
+package com.example.kchen.todo.springboot.repository;
+
+import com.example.kchen.todo.springboot.entity.Task;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+
+@Repository
+public class TaskDaoImpl implements TaskDao {
+	private final EntityManager entityManager;
+
+	public TaskDaoImpl(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	@Override
+	public List<Task> findAll() {
+		TypedQuery<Task> query = this.entityManager.createQuery(
+				"From Task",
+				Task.class
+		);
+
+		return query.getResultList();
+	}
+
+	@Override
+	public Task findByid(Integer id) {
+		return this.entityManager.find(Task.class, id);
+	}
+
+	@Override
+	public Task add(Task newTask) {
+		this.entityManager.persist(newTask);
+		return newTask;
+	}
+
+	@Override
+	public Task update(Task updatedTask) {
+		this.entityManager.merge(updatedTask);
+		return updatedTask;
+	}
+
+	@Override
+	public Task delete(Task task) {
+		task.setDeleted(true);
+		return task;
+	}
+}
