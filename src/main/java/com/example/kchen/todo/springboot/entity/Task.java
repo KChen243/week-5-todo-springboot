@@ -49,6 +49,13 @@ public class Task {
 	@Column(name = "updated")
 	private Timestamp updated;
 
+	public enum Status {
+		UPCOMING,
+		OVERDUE,
+		COMPLETED,
+		DELETED
+	};
+
 	public Task(String title, String description, Category category, Timestamp dueDate) {
 		this.title = title;
 		this.description = description;

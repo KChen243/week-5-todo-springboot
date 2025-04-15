@@ -98,29 +98,29 @@ public class TaskService {
 	}
 
 	public List<Task> findTaskByStatus(String status) {
+		Task.Status statusEnum = Task.Status.valueOf(status.toUpperCase());
 		List<Task> tasks = this.taskDao.findAll();
-
-		switch (status) {
-			case "completed" -> {
+		switch (statusEnum) {
+			case COMPLETED -> {
 				return tasks
 						.stream()
 						.filter(t -> t.isCompleted() && !t.isDeleted())
 						.toList();
 			}
-			case "deleted" -> {
+			case DELETED -> {
 				return tasks
 						.stream()
 						.filter(Task::isDeleted)
 						.toList();
 			}
-			case "overdue" -> {
+			case OVERDUE -> {
 				Date today = new Date();
 				return tasks
 						.stream()
 						.filter(t -> t.getDueDate().compareTo(today) < 0 && !t.isCompleted() && !t.isDeleted())
 						.toList();
 			}
-			case "upcoming" -> {
+			case UPCOMING -> {
 				Date today = new Date();
 				return tasks
 						.stream()
