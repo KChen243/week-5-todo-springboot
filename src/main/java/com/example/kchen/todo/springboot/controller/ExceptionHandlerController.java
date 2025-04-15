@@ -32,15 +32,4 @@ public class ExceptionHandlerController {
 
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
-
-	@ExceptionHandler
-	public ResponseEntity<ExceptionResponse> handleExceptions(RuntimeException e) {
-		ExceptionResponse error = new ExceptionResponse();
-
-		error.setStatus(HttpStatus.BAD_REQUEST.value());
-		error.setMessage(e.getMessage());
-		error.setTimestamp(System.currentTimeMillis());
-
-		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-	}
 }
