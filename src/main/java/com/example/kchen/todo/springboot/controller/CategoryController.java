@@ -3,6 +3,7 @@ package com.example.kchen.todo.springboot.controller;
 import com.example.kchen.todo.springboot.entity.Category;
 import com.example.kchen.todo.springboot.service.CategoryService;
 import com.example.kchen.todo.springboot.service.TaskService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class CategoryController {
 	}
 
 	@PostMapping("")
+	@PreAuthorize("hasRole('ROLE_category_admin')")
 	public Category add(@RequestBody Category newCategory) {
 		return this.categoryService.add(newCategory);
 	}
@@ -37,6 +39,7 @@ public class CategoryController {
 	}
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_category_admin')")
 	public Category delete(@PathVariable(name = "id") Integer id) {
 		return this.categoryService.delete(id);
 	}
